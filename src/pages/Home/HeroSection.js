@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Background from "../assets/backgroundimage.jpg";
 import Background1 from "../assets/laptop-g1a593331a_1920.jpg";
+import { json } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const HeroSection = () => {
+  const { user, setUser } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      email: e.target.email.value,
+      checkbox: e.target.checkbox.value,
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+    e.target.reset();
+    console.log(user);
+  };
   return (
     <div className="">
       {/* <div
@@ -74,48 +91,68 @@ const HeroSection = () => {
         </div>
         <div className="hero-content  text-neutral-content">
           <div className="max-w-md">
-            <h2></h2>
-            {/* <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p> */}
-
-            <div className="hero ">
-              <div className="hero-content ">
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                  <div className="card-body">
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Email</span>
-                      </label>
+            <div className="ml-96 w-72">
+              <div className="bg-white p-6">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seattle_Pacific_University_logo.svg/2560px-Seattle_Pacific_University_logo.svg.png"
+                  alt=""
+                  className="w-48 mx-auto"
+                />
+                <h2 className="text-2xl font-bold text-center text-black">
+                  Get Covered
+                </h2>
+                <p className="text-md font-semibold text-center text-slate-400">
+                  Accept your LARP Award Now, At no cost to you.
+                </p>
+                <form onSubmit={handleSubmit}>
+                  <div className="form-control mb-2">
+                    <input
+                      type="text"
+                      name="firstname"
+                      placeholder="Student first Name"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control mb-2">
+                    <input
+                      type="text"
+                      name="lastname"
+                      placeholder="Student last Name"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control mb-2">
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="Student Email Address"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control mb-2">
+                    <div className="flex justify-center items-center gap-2">
                       <input
-                        type="text"
-                        placeholder="email"
-                        className="input input-bordered"
+                        type="checkbox"
+                        name="checkbox"
+                        placeholder="Student Email Address"
+                        className="input  w-8"
                       />
-                    </div>
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Password</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="password"
-                        className="input input-bordered"
-                      />
-                      <label className="label">
-                        <a href="#" className="label-text-alt link link-hover">
-                          Forgot password?
-                        </a>
-                      </label>
-                    </div>
-                    <div className="form-control mt-6">
-                      <button className="btn btn-primary">Login</button>
+                      <h2 className="text-red-900 text-xs font-semibold">
+                        I confirmed that I have recived and Accpted the LARP
+                        Award
+                      </h2>
                     </div>
                   </div>
-                </div>
+                  <div className="bg-red-700 px-8 py-2">
+                    <button className="text-md">Accept My LRAP Award</button>
+                  </div>
+
+                  <p className="text-red-900 text-xs  font-semibold mt-2">
+                    Check the box and click the accept button above to accept
+                    your LRAP Award at no or commitment.Accepting your Award
+                    Simply confirms your Covered if you enroll at client
+                  </p>
+                </form>
               </div>
             </div>
           </div>
