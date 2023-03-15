@@ -1,20 +1,19 @@
 import React from "react";
 import shelidImage from "../assets/shield.png";
-import shelidImage1 from "../assets/shield-svgrepo-com.svg";
+
 
 const RealatedText = () => {
   return (
-    <div className="flex justify-center items-center mx-auto w-2/4 pb-12 ">
+    <div className="flex justify-center items-center mx-auto  w-full  md:w-2/4  pb-12 ">
       <div className="-mt-12">
         <div className="bg-rose-900 p-2">
           <div className="flex gap-8">
             <img
               src={shelidImage}
               alt=""
-              className="w-16 p-2 ml-4  bg-rose-900"
+              className=" w-16  ml-5 p-2 bg-rose-900"
             />
-            {/* <img src={shelidImage1} alt="" className="w-16 p-2" /> */}
-            <p className="text-white pr-1 font-semibold">
+            <p className="text-white pr-1 font-semibold  leading-5">
               At seattle Pacific University,we've partner with Ardeo to help you
               protect your college investment with a Loan Repayment Assistence
               benefit called LRAP -at no cost to you.

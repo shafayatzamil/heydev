@@ -2,54 +2,62 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/backgroundimage.jpg";
 import { AuthContext } from "../contexts/AuthProvider";
-import toast from "react-hot-toast";
 
-const Login = () => {
-  const {authecticUser,setAuthenticUser}= useContext(AuthContext);
-  const navigate = useNavigate();
+import toast from "react-hot-toast";
+const Register = () => {
+
+    const navigate= useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const loginUser= {
-      email :form.email.value,
-      password : form.password.value
+
+    const  form = e.target;
+    // take value from form 
+    const createdUser= {
+         name :form.name.value,
+         email : form.email.value,
+         password : form.password.value,
     }
 
-    // user catch from local storage
-    const createUser=localStorage.getItem("user");
-    const Registered=JSON.parse(createUser);
-    if(loginUser.email===Registered.email&& loginUser.password===Registered.password){
-      setAuthenticUser(Registered);
-
-      toast.success("login succesfull");
-    }else if(loginUser.email!=Registered.email){
-      toast.error("email are not match")
-    }else if(loginUser.password!=Registered.password){
-      toast.error("Password is not match");
-    }
-    else{
-      toast.error("login eroor");
-    }
-    
-    navigate("/users");
+    // put value on localStorage
+    localStorage.setItem("user",JSON.stringify(createdUser));
+    toast.success("Acoount created please login ");
+    // naviagte to login page
+    navigate("/login");
     form.reset();
-  };
+};
+
+
+
 
 
   return (
-    <div className="hero w-full  bg-gray-100 rounded-lg">
+    <div className="hero w-full  bg-gray-100  rounded-lg">
       <div className="hero-content grid gap-10 md:grid-cols-2 flex-col lg:flex-row">
         <div className="text-center lg:text-left">
           <img
-            className=" hidden md:block ml-5 w-3/4 rounded-lg"
+            className="hidden md:block ml-5 w-3/4 rounded-lg"
             src={loginImage}
             alt=""
           />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
-          <h1 className="text-5xl text-center font-bold">Login</h1>
+          <h1 className="text-5xl text-center font-bold">Register</h1>
+
+          {/* form  */}
           <form className="card-body" onSubmit={handleSubmit}>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                required
+                name="name"
+                placeholder="full-name"
+                className="input input-bordered"
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -57,6 +65,7 @@ const Login = () => {
               <input
                 type="text"
                 name="email"
+                required
                 placeholder="email"
                 className="input input-bordered"
               />
@@ -78,7 +87,11 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-3">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input
+                className="btn btn-primary"
+                type="submit"
+                value="Register"
+              />
             </div>
           </form>
 
@@ -91,7 +104,7 @@ const Login = () => {
           </div>
           <div className="flex justify-center space-x-4">
             <button
-       
+           
               aria-label="Log in with Google"
               className="p-3 rounded-sm"
             >
@@ -106,7 +119,7 @@ const Login = () => {
             <button
               aria-label="Log in with Facebook"
               className="p-3 rounded-sm"
-
+          
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +133,7 @@ const Login = () => {
               </svg>
             </button>
             <button
-       
+            
               aria-label="Log in with GitHub"
               className="p-3 rounded-sm"
             >
@@ -134,10 +147,11 @@ const Login = () => {
             </button>
           </div>
 
+          {/* loginpage return */}
           <p className="text-center">
-            New to ZamilFits?
-            <Link className="text-orange-600 font-bold" to="/register">
-              Sign Up
+            already have an account?
+            <Link className="text-orange-600 font-bold" to="/login">
+              login
             </Link>
           </p>
         </div>
@@ -146,4 +160,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

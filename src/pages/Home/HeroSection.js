@@ -5,7 +5,8 @@ import { json } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const HeroSection = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const {authecticUser } = useContext(AuthContext);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,14 +23,6 @@ const HeroSection = () => {
   };
   return (
     <div className="">
-      {/* <div
-        className="h-96 w-full  bg-cover bg-gradient-to-r from-red-900 to-pink-500"
-        style={{ backgroundImage: `url(${Background1})` }}
-      >
-        <h2 className="text-white">
-          PURSUE <span>Your passions</span>
-        </h2>
-      </div> */}
       <div
         className="hero min-h-screen"
         style={{
@@ -39,64 +32,40 @@ const HeroSection = () => {
         <div className="hero-overlay bg-opacity-60">
           {/* text */}
           <div className="text-white text-2xl font-bold mt-60 ml-36">
-            <div className="flex ">
+            <div className="flex relative ">
+
+              <div className="box-content p-2 bg-rose-900  absolute top-5 left-[91px] rotate-45"></div>
               {" "}
               <h2 className="bg-rose-900 p-3">pursue</h2>
               <h2 className="bg-red-700 p-3">Your passions</h2>
             </div>
-            <div className="flex mt-2 ">
+            <div className="flex mt-2 relative ">
+            <div className="box-content p-2 bg-rose-900  absolute top-5 left-[88px] rotate-45"></div>
               <h2 className="bg-rose-900 p-3">Secure</h2>
               <h2 className="bg-red-700 p-3">Your peace of mind</h2>
             </div>
           </div>
           {/* form */}
           <div>
-            {/* <div className="hero ">
-              <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                  <div className="card-body">
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Email</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="email"
-                        className="input input-bordered"
-                      />
-                    </div>
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Password</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="password"
-                        className="input input-bordered"
-                      />
-                      <label className="label">
-                        <a href="#" className="label-text-alt link link-hover">
-                          Forgot password?
-                        </a>
-                      </label>
-                    </div>
-                    <div className="form-control mt-6">
-                      <button className="btn btn-primary">Login</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
-        <div className="hero-content  text-neutral-content">
-          <div className="max-w-md">
+
+
+        {/* from will be visible or hidden */}
+        {
+          authecticUser?<>
+
+          <h2 className="bg-[#37323E] text-white  text-4xl -mr-96 p-2">Form hidden when user logedin </h2>
+          
+          </>:
+          <><div className="hero-content text-neutral-content">
+          <div className="max-w-md hidden md:block">
             <div className="ml-96 w-72">
               <div className="bg-white p-6">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seattle_Pacific_University_logo.svg/2560px-Seattle_Pacific_University_logo.svg.png"
                   alt=""
-                  className="w-48 mx-auto"
+                  className="w-36 mx-auto"
                 />
                 <h2 className="text-2xl font-bold text-center text-black">
                   Get Covered
@@ -156,7 +125,8 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div></>
+        }
       </div>
     </div>
   );

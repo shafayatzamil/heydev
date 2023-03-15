@@ -7,7 +7,6 @@ const UserDetails = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/users");
-    console.log("clicked");
   };
   return (
     <div className="p-3 bg-slate-100">
@@ -34,7 +33,8 @@ const UserDetails = () => {
             catchPhrase:{company.catchPhrase}
           </p>
           <div className="card-actions justify-end">
-            <button onClick={handleClick} className="btn btn-primary">
+            {/* back to the user page */}
+            <button onClick={handleClick} className="btn  btn-info text-white">
               back to user page
             </button>
           </div>

@@ -1,6 +1,7 @@
 import Home from "../Home/Home";
 import Main from "../layout/Main";
 import Login from "../loginpage/Login";
+import Register from "../loginpage/Register";
 import AllUser from "../userpage/AllUser";
 import UserDetails from "../userpage/UserDetails";
 import ProtectedRoute from "./ProtectedRoutes";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
+      {
+        path:"/register",
+        element:<Register></Register>
+      }
     ],
   },
 ]);

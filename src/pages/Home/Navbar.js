@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+
+  const { authecticUser,setAuthenticUser} = useContext(AuthContext);
+
+
+  const handlelogout= ()=>{
+    // console.log("clicked");
+    localStorage.removeItem("user");
+    toast.success("Logout sucessfull");
+    setAuthenticUser(null);
+  }
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -48,9 +61,23 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="login">
-            <div className="btn">Login</div>
+
+
+        {/* navbar  logout  */}
+          {
+            authecticUser?<>
+            <div className="flex justify-center items-center gap-2 mr-2"> <h2 className="text-lg font-bold text-gray-600">{authecticUser.name}</h2> <img src="https://www.svgrepo.com/show/111216/user.svg" className="w-12 rounded-full" alt="" /></div>
+            <div className="btn btn-outline" onClick={handlelogout} >logout</div>            
+            </>
+            :
+            <>
+            <Link to="register">
+            <div className="btn btn-outline">Register</div>
           </Link>
+            
+            </>
+          }
+          
         </div>
       </div>
     </div>

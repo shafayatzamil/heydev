@@ -12,21 +12,21 @@ const Featured = () => {
         As Featued In
       </h4>
       {/* company image */}
-      <div className="flex justify-center items-center gap-12 ">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-12 ">
         <div>
-          <img src={companyImage1} alt="" className="w-48" />
+          <img src={companyImage1} alt="" className="w-40" />
         </div>
         <div>
-          <img src={companyImage2} alt="" className="w-44" />
+          <img src={companyImage2} alt="" className="w-36" />
         </div>
         <div>
-          <img src={companyImage3} alt="" className="w-44" />
+          <img src={companyImage3} alt="" className="w-36" />
         </div>
         <div>
-          <img src={companyImage4} alt="" className="w-44" />
+          <img src={companyImage4} alt="" className="w-36" />
         </div>
         <div>
-          <img src={companyImage5} alt="" className="w-36" />
+          <img src={companyImage5} alt="" className="w-28" />
         </div>
       </div>
       {/* footer */}
